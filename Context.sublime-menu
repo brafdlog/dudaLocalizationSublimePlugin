@@ -1,0 +1,7 @@
+[
+    {
+        "id" : "dLocalize",
+        "caption" : "Duda Localize",
+        "command" : "d_localize"
+    }
+]
