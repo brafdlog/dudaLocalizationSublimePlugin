@@ -37,6 +37,7 @@ class dLocalizeCommand(sublime_plugin.TextCommand):
         selectedRegion = sel[0]
         selectionText = view.substr(selectedRegion)
         selectionText = selectionText.replace('\'', '')
+        selectionText = selectionText.replace('\"', '')
         if selectionText:
             localizationKey = self.getExistingKeyForText(stringsFileLines, selectionText)
             if localizationKey: # if this text already exists in the string file
