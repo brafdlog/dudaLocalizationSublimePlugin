@@ -82,7 +82,7 @@ class dLocalizeCommand(sublime_plugin.TextCommand):
     # Recursively searches for the duda root folder starting from the current active file
     # and up through it's ancestors
     def getDudaRootFolderPath(self, path):
-        if not path or path is SYSTEM_ROOT_PATH or path.endswith(os.path.join('duda', 'DudaRoot')):
+        if not path or path is SYSTEM_ROOT_PATH or path.endswith(os.path.join('DudaRoot')):
             return path
         parentFolderPath = self.getParentDirectoryPath(path)
         return self.getDudaRootFolderPath(parentFolderPath)
