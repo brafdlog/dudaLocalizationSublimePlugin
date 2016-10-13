@@ -3,6 +3,7 @@ import sublime_plugin
 import os
 import os.path
 from functools import partial
+import re
 
 SYSTEM_ROOT_PATH = os.path.abspath(os.sep)
 SEPARATOR = os.pathsep
@@ -50,8 +51,9 @@ class dLocalizeCommand(sublime_plugin.TextCommand):
     def replaceSelectionAndAddNewLocalizationKey(self, selectionText, stringsFilePath, stringsFileLines, localizationKey):
         self.replaceSelectionWithLocalizationKey(localizationKey)
         stringsFileLines.append(KEY_PREFIX + localizationKey + '=' + selectionText + '\n')
+
         # Want to keep them sorted alphabetically
-        stringsFileLines.sort()
+        self.sort_nicely(stringsFileLines)
 
         stringsFile = open(stringsFilePath, 'w') # to clear the file
         stringsFile.write(''.join(stringsFileLines))
@@ -87,3 +89,10 @@ class dLocalizeCommand(sublime_plugin.TextCommand):
 
     def getParentDirectoryPath(self, path):
         return os.path.abspath(os.path.join(path, os.pardir))
+
+    def sort_nicely(self, listToSort):
+        """ Sort the given list in the way that humans expect - numbers inside strings are sorted correctly
+        """
+        convert = lambda text: int(text) if text.isdigit() else text
+        alphanum_key = lambda key: [ convert(c) for c in re.split('([0-9]+)', key) ]
+        listToSort.sort( key=alphanum_key )
