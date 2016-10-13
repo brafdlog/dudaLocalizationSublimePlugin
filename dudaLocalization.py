@@ -62,7 +62,7 @@ class dLocalizeCommand(sublime_plugin.TextCommand):
     # Replace the current selection with the given localization key
     def replaceSelectionWithLocalizationKey(self, localizationKey):
         keyWithoutPrefix = self.removePrefix(localizationKey, KEY_PREFIX)
-        self.view.run_command("insert", {"characters": '{str(\'' + keyWithoutPrefix + '\')}'})
+        self.view.run_command("insert", {"characters": 'str(\'' + keyWithoutPrefix + '\')'})
 
     # if the string starts with the given prefix return the same string without that prefix
     def removePrefix(self, string, prefixToRemove):
