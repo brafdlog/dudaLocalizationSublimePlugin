@@ -1,6 +1,6 @@
 [
     { 
-        "keys": ["ctrl+shift+l"],
+        "keys": ["super+shift+l"],
         "command": "d_localize"
     }
 ]
