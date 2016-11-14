@@ -75,9 +75,9 @@ class dLocalizeCommand(sublime_plugin.TextCommand):
     # otherwise returns None
     def getExistingKeyForText(self, stringsFileLines, text):
         for line in stringsFileLines:
-            line = line.lower().strip()
-            if line.startswith('ui.') and line.endswith('=' + text.lower()):
-                key = line.split('=')
+            lineLowerCase = line.lower().strip()
+            if lineLowerCase.startswith('ui.') and lineLowerCase.endswith('=' + text.lower()):
+                key = line.strip().split('=')
                 return key[0];
         return None
 
